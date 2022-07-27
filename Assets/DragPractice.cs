@@ -6,14 +6,11 @@ using UnityEngine;
 
 
 
-public class Drag : MonoBehaviour
+public class DragPractice : MonoBehaviour
 
 {
 
     private Vector3 mOffset;
-
-    public float time;
-    private bool started = false;
 
 
 
@@ -65,11 +62,9 @@ public class Drag : MonoBehaviour
 
     void OnMouseDrag()
 
-    {  
-        if(transform.position.x < 11){
-            time+=Time.deltaTime;
+    {
         Vector3 joe = GetMouseAsWorldPoint() + mOffset;
-        transform.position = new Vector3(joe.x, 0, joe.z);}
+        transform.position = new Vector3(joe.x, 0, joe.z);
         
     }
 

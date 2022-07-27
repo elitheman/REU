@@ -20,7 +20,7 @@ public class Move : MonoBehaviour
         if(Input.GetButtonDown("Fire1")){
             start = true;
         }
-        if(start){
+        if(start && transform.position.x <11){
         transform.Translate(Vector3.right * speed * Time.deltaTime);}
         
     }

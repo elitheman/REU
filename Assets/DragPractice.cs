@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 
 public class DragPractice : MonoBehaviour
@@ -17,6 +17,11 @@ public class DragPractice : MonoBehaviour
     private float mZCoord;
 
 
+
+    void Update(){
+         if(Input.GetButtonDown("Fire2")){
+            SceneManager.LoadScene(1);}
+    }
 
     void OnMouseDown()
 

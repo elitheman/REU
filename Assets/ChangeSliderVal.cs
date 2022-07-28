@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
 using System;
-
 using UnityEngine.SceneManagement;
 
 public class ChangeSliderVal : MonoBehaviour
@@ -11,8 +11,10 @@ public class ChangeSliderVal : MonoBehaviour
     // Start is called before the first frame update
     public Slider slider;
     public GameObject Textt;
+    
     void Start()
     {
+        Directory.CreateDirectory(Application.streamingAssetsPath+ "/Chat_Logs/");
         
     }
 
@@ -22,8 +24,10 @@ public class ChangeSliderVal : MonoBehaviour
         Textt.GetComponent<TMPro.TextMeshProUGUI>().text = System.Convert.ToString(Math.Floor(slider.value));
     }
 
-    public static void SetLevel(){
+    public void SetLevel(){
+        string txtDoucumentName = Application.streamingAssetsPath + "/Chat_Logs/" + "value" + ".txt";
          SceneManager.LoadScene(2);
+         File.WriteAllText(txtDoucumentName, System.Convert.ToString(Math.Floor(slider.value)));
 
     }
 }

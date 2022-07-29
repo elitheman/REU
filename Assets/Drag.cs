@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
+using System.IO;
 
 
 
@@ -20,12 +21,20 @@ public class Drag : MonoBehaviour
 
     private float mZCoord;
 
-
+    private string participant;
 
    public int trial;
+   void Update(){
+       if(Input.GetButtonDown("Fire2")){
+           string txtDoucumentName = Application.streamingAssetsPath + "/Data_REU/" +"Participant_" + participant + "/" + "User_Move_Time" + ".txt";
+           File.WriteAllText(txtDoucumentName, System.Convert.ToString(time));
+       }
+   }
     void Start()
     {
-        string readFromFilePath = Application.streamingAssetsPath + "/Chat_Logs/" + "value" + ".txt";
+        string reaFromFilePath = Application.streamingAssetsPath + "/Data_REU/" + "Participant_cur" + ".txt";
+        participant = File.ReadAllLines(reaFromFilePath)[0];
+        string readFromFilePath = Application.streamingAssetsPath + "/Data_REU/" +"Participant_" + participant + "/" + "Speed_Condition" + ".txt";
         trial = System.Convert.ToInt32(readFromFilePath[0]);
         if(trial > 4){
             transform.position = new Vector3(11, 0 , 0);

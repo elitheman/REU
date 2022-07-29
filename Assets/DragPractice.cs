@@ -16,14 +16,26 @@ public class DragPractice : MonoBehaviour
 
 
     private float mZCoord;
+    private string Participant;
 
 void Start(){
-    Directory.CreateDirectory(Application.streamingAssetsPath+ "/Times_REU/");
+    if(!(Directory.Exists(Application.streamingAssetsPath+ "/Data_REU/"))){
+    Directory.CreateDirectory(Application.streamingAssetsPath+ "/Data_REU/");
+    string txDoucumentName = Application.streamingAssetsPath + "/Data_REU/" + "Participant_Cur" + ".txt";
+    File.WriteAllText(txDoucumentName, "0");
+    ;}
+    string readFromFilePath = Application.streamingAssetsPath + "/Data_REU/" + "Participant_cur" + ".txt";
+    Participant = File.ReadAllLines(readFromFilePath)[0];
+    Directory.CreateDirectory(Application.streamingAssetsPath+ "/Data_REU/" + "Participant_" + System.Convert.ToString(System.Convert.ToInt32(Participant) +1 ));
+    string txtDoucumentName = Application.streamingAssetsPath + "/Data_REU/" + "Participant_Cur" + ".txt";
+    Participant =System.Convert.ToString(System.Convert.ToInt32(Participant) +1 );
+    File.WriteAllText(txtDoucumentName, Participant);
+
 }
 
     void Update(){
          if(Input.GetButtonDown("Fire2")){
-             string txtDoucumentName = Application.streamingAssetsPath + "/Times_REU/" + "Practice_Total_Time" + ".txt";
+             string txtDoucumentName = Application.streamingAssetsPath + "/Data_REU/" +"Participant_" + System.Convert.ToString(System.Convert.ToInt32(Participant)) + "/" +"Practice_Total_Time" + ".txt";
              File.WriteAllText(txtDoucumentName, System.Convert.ToString(Time.timeSinceLevelLoad));
             SceneManager.LoadScene(1);}
     }

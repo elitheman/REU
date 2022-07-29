@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.IO;
 
 
 public class DragPractice : MonoBehaviour
@@ -16,10 +17,14 @@ public class DragPractice : MonoBehaviour
 
     private float mZCoord;
 
-
+void Start(){
+    Directory.CreateDirectory(Application.streamingAssetsPath+ "/Times_REU/");
+}
 
     void Update(){
          if(Input.GetButtonDown("Fire2")){
+             string txtDoucumentName = Application.streamingAssetsPath + "/Times_REU/" + "Practice_Total_Time" + ".txt";
+             File.WriteAllText(txtDoucumentName, System.Convert.ToString(Time.timeSinceLevelLoad));
             SceneManager.LoadScene(1);}
     }
 
@@ -48,7 +53,6 @@ public class DragPractice : MonoBehaviour
         // Pixel coordinates of mouse (x,y)
 
         Vector3 mousePoint = Input.mousePosition;
-
 
 
         // z coordinate of game object on screen

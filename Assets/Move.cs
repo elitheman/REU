@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 public class Move : MonoBehaviour
 {
@@ -22,7 +23,9 @@ public class Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(Input.GetButtonDown("Fire3")){
+            SceneManager.LoadScene(3);
+        }
         if(Input.GetButtonDown("Fire2")){
             Application.LoadLevel(Application.loadedLevel);}
 

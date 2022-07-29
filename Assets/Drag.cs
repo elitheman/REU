@@ -6,6 +6,7 @@ using UnityEngine;
 
 
 
+
 public class Drag : MonoBehaviour
 
 {
@@ -21,6 +22,15 @@ public class Drag : MonoBehaviour
 
 
 
+   public int trial;
+    void Start()
+    {
+        string readFromFilePath = Application.streamingAssetsPath + "/Chat_Logs/" + "value" + ".txt";
+        trial = System.Convert.ToInt32(readFromFilePath[0]);
+        if(trial > 4){
+            transform.position = new Vector3(11, 0 , 0);
+        }
+    }
     void OnMouseDown()
 
     {
@@ -65,12 +75,19 @@ public class Drag : MonoBehaviour
 
     void OnMouseDrag()
 
-    {  
+    { 
+        if(trial < 4){
         if(transform.position.x < 11){
             time+=Time.deltaTime;
         Vector3 joe = GetMouseAsWorldPoint() + mOffset;
-        transform.position = new Vector3(joe.x, 0, joe.z);}
+        transform.position = new Vector3(joe.x, 0, joe.z);}}
+        else{
+        if(transform.position.x > -11){
+            time+=Time.deltaTime;
+        Vector3 joe = GetMouseAsWorldPoint() + mOffset;
+        transform.position = new Vector3(joe.x, 0, joe.z);}}
+
+        }
         
-    }
 
 }

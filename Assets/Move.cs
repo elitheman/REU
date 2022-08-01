@@ -13,12 +13,16 @@ public class Move : MonoBehaviour
     public string trial;
     public bool track_time = false;
     public float time;
+    public string trialNum;
     void Start()
     {
         string reaFromFilePath = Application.streamingAssetsPath + "/Data_REU/" + "Participant_cur" + ".txt";
         string Participant = File.ReadAllLines(reaFromFilePath)[0];
-        string readFromFilePath = Application.streamingAssetsPath + "/Data_REU/" + "Participant_"+ Participant + "/"+"Speed_Condition" + ".txt";
+        trialNum = File.ReadAllLines(Application.streamingAssetsPath + "/Data_REU/" + "Participant_" + Participant + "/" + "Trial_Cur" + ".txt")[0];
+        string readFromFilePath = Application.streamingAssetsPath + "/Data_REU/" +"Participant_" + Participant + "/" + "Trial_" + trialNum + "/" +"Speed_Condition" + ".txt";
+        //trial = System.Convert.ToInt32(readFromFilePath[0]);
         trial = File.ReadAllLines(readFromFilePath)[0];
+        //trial = readFromFilePath[0];
         if(System.Convert.ToInt32(trial) > 4){
             transform.position = new Vector3(11, 0 , 0);
         }

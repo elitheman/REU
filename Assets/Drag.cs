@@ -30,6 +30,7 @@ public class Drag : MonoBehaviour
        if(Input.GetButtonDown("Fire2")){
            string txtDoucumentName = Application.streamingAssetsPath + "/Data_REU/" +"Participant_" + participant + "/" + "Trial_" + trialNum + "/" + "User_Move_Time" + ".txt";
            File.WriteAllText(txtDoucumentName, System.Convert.ToString(time));
+            SceneManager.LoadScene(3);
        }
 
        if(Input.GetButtonDown("Jump")){

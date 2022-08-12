@@ -10,7 +10,7 @@ public class Move : MonoBehaviour
 
     float speed = 5f;
     public bool start = false;
-    public string trial;
+    public string speedCon;
     public bool track_time = false;
     public float time;
     public string trialNum;
@@ -18,12 +18,11 @@ public class Move : MonoBehaviour
     {
         string reaFromFilePath = Application.streamingAssetsPath + "/Data_REU/" + "Participant_cur" + ".txt";
         string Participant = File.ReadAllLines(reaFromFilePath)[0];
-        trialNum = File.ReadAllLines(Application.streamingAssetsPath + "/Data_REU/" + "Participant_" + Participant + "/" + "Trial_Cur" + ".txt")[0];
-        string readFromFilePath = Application.streamingAssetsPath + "/Data_REU/" +"Participant_" + Participant + "/" + "Trial_" + trialNum + "/" +"Speed_Condition" + ".txt";
-        //trial = System.Convert.ToInt32(readFromFilePath[0]);
-        trial = File.ReadAllLines(readFromFilePath)[0];
+        string readFromFilePathSpeed = Application.streamingAssetsPath + "/Data_REU/" + "Participant_" + Participant + "/"+"Speed_Condition" + ".txt";
+        speedCon = File.ReadAllLines(readFromFilePathSpeed)[0];
+        trialNum = File.ReadAllLines(Application.streamingAssetsPath + "/Data_REU/" + "Participant_" + Participant + "/" + "Condition_" + speedCon + "/" + "Trial_Cur"  + ".txt")[0];
         //trial = readFromFilePath[0];
-        if(System.Convert.ToInt32(trial) > 4){
+        if(System.Convert.ToInt32(speedCon) > 4){
             transform.position = new Vector3(11, 0 , 0);
         }
     }
@@ -46,7 +45,7 @@ public class Move : MonoBehaviour
             start = true;}
 
 
-        switch(trial){
+        switch(speedCon){
         case "1": 
             if(start && transform.position.x <11){
             transform.Translate(Vector3.right * speed * Time.deltaTime);}

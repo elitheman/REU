@@ -23,12 +23,17 @@ void Start(){
     Directory.CreateDirectory(Application.streamingAssetsPath+ "/Data_REU/");
     string txDoucumentName = Application.streamingAssetsPath + "/Data_REU/" + "Participant_Cur" + ".txt";
     File.WriteAllText(txDoucumentName, "0");
-    ;}
+    }
+    string inputSystem = Application.streamingAssetsPath + "/Data_REU/" + "Input.txt";
+    File.WriteAllText(inputSystem,
+    "12837465\n23148576\n34251687\n45362718\n56473821\n67584132\n78615243\n81726354");
     string readFromFilePath = Application.streamingAssetsPath + "/Data_REU/" + "Participant_cur" + ".txt";
     Participant = File.ReadAllLines(readFromFilePath)[0];
     Directory.CreateDirectory(Application.streamingAssetsPath+ "/Data_REU/" + "Participant_" + System.Convert.ToString(System.Convert.ToInt32(Participant) +1 ));
     string txtDoucumentName = Application.streamingAssetsPath + "/Data_REU/" + "Participant_Cur" + ".txt";
     Participant =System.Convert.ToString(System.Convert.ToInt32(Participant) +1 );
+    string CurrentSpeedDone = Application.streamingAssetsPath + "/Data_REU/" + "Participant_" + Participant + "/" + "SpeedCur.txt";
+    File.WriteAllText(CurrentSpeedDone, "0");
     File.WriteAllText(txtDoucumentName, Participant);
 
 }
